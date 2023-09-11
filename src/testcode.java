@@ -64,6 +64,8 @@ public class bad1 extends HttpServlet {
         ExpressionFactory expressionFactory = context.getApplication().getExpressionFactory();
         ELContext elContext = context.getELContext();
         // deepid: tainted-code-injection-from-http-request 
-        ValueExpression vex = expressionFactory.createValueExpression(elContext, expression, String.class);
+        // Sanitize the expression to prevent code injection attacks
+        String sanitizedExpression = StringEscapeUtils.escapeEcmaScript(expression);
+        ValueExpression vex = expressionFactory.createValueExpression(elContext, sanitizedExpression, String.class);
         return (String) vex.getValue(elContext);
     }
