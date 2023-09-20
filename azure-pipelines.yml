@@ -4,7 +4,7 @@
 pool:
   vmImage: ubuntu-latest
 variables:
-- group: Semgrep
+- group: Semgrep_Demo
 
 steps: 
 
