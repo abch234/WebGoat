@@ -55,6 +55,7 @@ public class XmlInputTransformer implements Iterator<StoreXml> {
             final XMLInputFactory inputFactory = XMLInputFactory.newFactory();
             inputFactory.setProperty(XMLInputFactory.SUPPORT_DTD, false);
             inputFactory.setProperty(XMLInputFactory.IS_SUPPORTING_EXTERNAL_ENTITIES, false);
+            inputFactory.setProperty("javax.xml.stream.isSupportingExternalEntities", false);
             this.xmlStreamReader = new StreamReaderDelegate(inputFactory.createXMLStreamReader(input)) {
                 @Override
                 public String getVersion() {
